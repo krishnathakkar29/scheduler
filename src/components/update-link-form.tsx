@@ -17,6 +17,7 @@ import { z } from "zod";
 import { updateUsername } from "../../actions/userAction";
 import useFetch from "@/hooks/use-fetch";
 import { useRouter } from "next/navigation";
+import { BarLoader } from "react-spinners";
 
 type Props = {
   username?: string | undefined | null;
@@ -76,6 +77,9 @@ const UpdateLinkForm = ({ username }: Props) => {
             />
             {error && (
               <p className="text-red-500 text-sm mt-1">{error?.message}</p>
+            )}
+            {loading && (
+              <BarLoader className="mb-4" width={"100%"} color="#36d7b7" />
             )}
             <Button type="submit" disabled={loading}>
               Update Username
