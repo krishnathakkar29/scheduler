@@ -21,7 +21,6 @@ export async function updateUsername(username: string) {
     if (existingUser && existingUser.id !== userId) {
       throw new Error("Username is already taken");
     }
-    console.log("1");
 
     const updatedUser = await prisma.user.update({
       where: {
@@ -31,13 +30,9 @@ export async function updateUsername(username: string) {
         username,
       },
     });
-    console.log("2");
     await client.users.updateUser(userId, {
       username,
     });
-
-    console.log("3");
-    console.log(updatedUser);
 
     return {
       success: true,
