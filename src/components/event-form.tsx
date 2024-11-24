@@ -1,3 +1,4 @@
+"use client";
 import { eventSchema } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";

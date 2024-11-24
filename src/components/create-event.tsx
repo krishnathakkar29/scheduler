@@ -11,8 +11,12 @@ import {
   DrawerTitle,
 } from "./ui/drawer";
 import { Button } from "./ui/button";
-import EventForm from "./event-form";
+import dynamic from "next/dynamic";
 
+const EventForm = dynamic(() => import("./event-form"), {
+  loading: () => <div className="p-4">Loading form...</div>,
+  ssr: false,
+});
 type Props = {};
 
 const CreateEventDrawer = (props: Props) => {
