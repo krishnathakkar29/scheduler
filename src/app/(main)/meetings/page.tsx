@@ -8,6 +8,8 @@ export const metadata = {
   description: "View and manage your upcoming and past meetings.",
 };
 
+export const dynamic = "force-dynamic";
+
 const page = () => {
   return (
     <Tabs defaultValue="upcoming">

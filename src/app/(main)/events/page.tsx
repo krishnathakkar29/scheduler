@@ -4,6 +4,8 @@ import EventCard from "@/components/event-card";
 
 type Props = {};
 
+export const dynamic = "force-dynamic";
+
 export default function EventsPage() {
   return (
     <Suspense fallback={<div>Loading events...</div>}>
