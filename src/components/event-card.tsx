@@ -50,7 +50,9 @@ const EventCard = ({ event, username, isPublic = false }: Props) => {
     }
   };
 
-  const handleCardClick = () => {};
+  const handleCardClick = () => {
+    //TODO
+  };
 
   return (
     <Card
