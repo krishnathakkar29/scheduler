@@ -37,7 +37,6 @@ const EventCard = ({ event, username, isPublic = false }: Props) => {
         `${window?.location.origin}/${username}/${event.id}`
       );
       setIsCopied(true);
-      setTimeout(() => setIsCopied(false), 2000); // Reset after 2 seconds
     } catch (err) {
       console.error("Failed to copy: ", err);
     }
