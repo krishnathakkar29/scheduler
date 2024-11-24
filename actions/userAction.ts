@@ -43,3 +43,44 @@ export async function updateUsername(username: string) {
     throw new Error("Failed to update username", error.message);
   }
 }
+
+export async function getUserByUsername(username: string) {
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        username,
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        imageUrl: true,
+        events: {
+          where: {
+            isPrivate: false,
+          },
+          orderBy: {
+            createdAt: "desc",
+          },
+          select: {
+            id: true,
+            title: true,
+            description: true,
+            duration: true,
+            isPrivate: true,
+            _count: {
+              select: {
+                bookings: true,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    return user;
+  } catch (error: any) {
+    console.log("Error getting username", error);
+    throw new Error("Failed to get username", error.message);
+  }
+}

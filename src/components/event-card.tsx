@@ -17,11 +17,13 @@ import { deleteEvent } from "../../actions/eventAction";
 
 type Props = {
   username: string | null;
-  event: Event & {
-    _count: {
-      bookings: number;
-    };
-  };
+  event:
+    | (Event & {
+        _count: {
+          bookings: number;
+        };
+      })
+    | any;
   isPublic?: boolean;
 };
 
@@ -50,8 +52,13 @@ const EventCard = ({ event, username, isPublic = false }: Props) => {
     }
   };
 
-  const handleCardClick = () => {
-    //TODO
+  const handleCardClick = (e: any) => {
+    if (e.target.tagName !== "BUTTON" && e.target.tagName !== "SVG") {
+      window?.open(
+        `${window?.location.origin}/${username}/${event.id}`,
+        "_blank"
+      );
+    }
   };
 
   return (

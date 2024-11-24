@@ -127,3 +127,33 @@ export async function deleteEvent(eventId: string) {
     throw new Error("Failed to update username", error.message);
   }
 }
+
+export async function getEventDetails(username: string, eventId: string) {
+  try {
+    const event = await prisma.event.findFirst({
+      where: {
+        id: eventId,
+        user: {
+          username: username,
+        },
+      },
+      include: {
+        user: {
+          select: {
+            name: true,
+            email: true,
+            imageUrl: true,
+          },
+        },
+      },
+    });
+
+    return {
+      success: true,
+      event,
+    };
+  } catch (error: any) {
+    console.log("Error getting event", error);
+    throw new Error("Failed to get event", error.message);
+  }
+}
