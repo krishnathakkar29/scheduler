@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import {
   Drawer,
   DrawerClose,
@@ -19,7 +19,7 @@ const EventForm = dynamic(() => import("./event-form"), {
 });
 type Props = {};
 
-const CreateEventDrawer = (props: Props) => {
+const DrawerContentElement = (props: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -58,6 +58,14 @@ const CreateEventDrawer = (props: Props) => {
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
+  );
+};
+
+const CreateEventDrawer = (props: Props) => {
+  return (
+    <Suspense fallback={null}>
+      <DrawerContentElement />
+    </Suspense>
   );
 };
 

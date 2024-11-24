@@ -5,6 +5,7 @@ import Header from "@/components/header";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/sonner";
 import CreateEventDrawer from "@/components/create-event";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,7 +28,9 @@ export default function RootLayout({
             {children}
           </main>
           <Toaster richColors />
-          <CreateEventDrawer />
+          <Suspense fallback={<div>Loading......</div>}>
+            <CreateEventDrawer />
+          </Suspense>
         </body>
       </html>
     </ClerkProvider>
