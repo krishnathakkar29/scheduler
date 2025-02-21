@@ -3,7 +3,6 @@ import { ArrowRight, Calendar, Clock, LinkIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import React, { useMemo } from "react";
 
 const features = [
   {
