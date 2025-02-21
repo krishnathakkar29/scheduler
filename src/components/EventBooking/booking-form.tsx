@@ -1,30 +1,18 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { format } from "date-fns";
-import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
+import { Calendar } from "@/components/ui/calendar";
+import { Card, CardContent } from "@/components/ui/card";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { bookingSchema } from "@/lib/schema";
-import { z } from "zod";
 import useFetch from "@/hooks/use-fetch";
+import { bookingSchema } from "@/lib/schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { format } from "date-fns";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import { createBooking } from "../../../actions/bookingAction";
 
 type Props = {
@@ -69,9 +57,7 @@ const BookingForm = ({ event, availability }: Props) => {
       return;
     }
 
-    const startTime = new Date(
-      `${format(selectedDate, "yyyy-MM-dd")}T${selectedTime}`
-    );
+    const startTime = new Date(`${format(selectedDate, "yyyy-MM-dd")}T${selectedTime}`);
     const endTime = new Date(startTime.getTime() + event.duration * 60000);
 
     const bookingData = {
@@ -89,9 +75,7 @@ const BookingForm = ({ event, availability }: Props) => {
   const availableDays = availability.map((day: any) => new Date(day.date));
 
   const timeSlots = selectedDate
-    ? availability.find(
-        (day: any) => day.date === format(selectedDate, "yyyy-MM-dd")
-      )?.slots || []
+    ? availability.find((day: any) => day.date === format(selectedDate, "yyyy-MM-dd"))?.slots || []
     : [];
 
   if (data) {
@@ -193,10 +177,7 @@ const BookingForm = ({ event, availability }: Props) => {
                 render={({ field }) => (
                   <FormItem>
                     <FormControl>
-                      <Textarea
-                        placeholder="Additional Information"
-                        {...field}
-                      />
+                      <Textarea placeholder="Additional Information" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

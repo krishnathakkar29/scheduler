@@ -47,28 +47,20 @@ export default async function UserProfilePage({
         </Avatar>
         <h1 className="text-3xl font-bold mb-2">{user.name}</h1>
         <p className="text-gray-600 text-center">
-          Welcome to my scheduling page. Please select an event below to book a
-          call with me.
+          Welcome to my scheduling page. Please select an event below to book a call with me.
         </p>
       </div>
 
       {user.events.length == 0 ? (
         <>
           {" "}
-          <p className="text-center text-gray-600">
-            No public events available.
-          </p>
+          <p className="text-center text-gray-600">No public events available.</p>
         </>
       ) : (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {user.events.map((event, index) => (
-              <EventCard
-                key={event.id}
-                event={event}
-                username={params.username}
-                isPublic
-              />
+            {user.events.map((event) => (
+              <EventCard key={event.id} event={event} username={params.username} isPublic />
             ))}
           </div>
         </>

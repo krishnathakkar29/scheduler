@@ -1,31 +1,16 @@
 "use client";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import useFetch from "@/hooks/use-fetch";
+import { timeSlots } from "@/lib/data";
 import { availabilitySchema } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Checkbox } from "./ui/checkbox";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./ui/select";
-import { timeSlots } from "@/lib/data";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
 import { updateUserAvailability } from "../../actions/availabilityAction";
-import useFetch from "@/hooks/use-fetch";
+import { Button } from "./ui/button";
+import { Checkbox } from "./ui/checkbox";
+import { Input } from "./ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 
 export type DayAvailabilitySettings = {
   isAvailable: boolean;
@@ -48,15 +33,7 @@ interface AvailabilityFormProps {
   data: AvailabilityData;
 }
 
-const days = [
-  "monday",
-  "tuesday",
-  "wednesday",
-  "thursday",
-  "friday",
-  "saturday",
-  "sunday",
-] as const;
+const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"] as const;
 
 const AvailabilityForm = ({ data }: AvailabilityFormProps) => {
   const form = useForm<z.infer<typeof availabilitySchema>>({
@@ -66,11 +43,7 @@ const AvailabilityForm = ({ data }: AvailabilityFormProps) => {
     },
   });
 
-  const {
-    loading,
-    error,
-    fn: fnupdateAvailability,
-  } = useFetch(updateUserAvailability);
+  const { loading, error, fn: fnupdateAvailability } = useFetch(updateUserAvailability);
 
   const onSubmit = async (data: z.infer<typeof availabilitySchema>) => {
     await fnupdateAvailability(data);
@@ -97,9 +70,7 @@ const AvailabilityForm = ({ data }: AvailabilityFormProps) => {
               )}
             />
 
-            <FormLabel className="w-24">
-              {day.charAt(0).toUpperCase() + day.slice(1)}
-            </FormLabel>
+            <FormLabel className="w-24">{day.charAt(0).toUpperCase() + day.slice(1)}</FormLabel>
 
             {form.watch(`${day}.isAvailable`) && (
               <>
@@ -108,10 +79,7 @@ const AvailabilityForm = ({ data }: AvailabilityFormProps) => {
                   name={`${day}.startTime`}
                   render={({ field }) => (
                     <FormItem>
-                      <Select
-                        onValueChange={field.onChange}
-                        value={field.value}
-                      >
+                      <Select onValueChange={field.onChange} value={field.value}>
                         <FormControl>
                           <SelectTrigger className="w-32">
                             <SelectValue placeholder="Start Time" />
@@ -137,10 +105,7 @@ const AvailabilityForm = ({ data }: AvailabilityFormProps) => {
                   name={`${day}.endTime`}
                   render={({ field }) => (
                     <FormItem>
-                      <Select
-                        onValueChange={field.onChange}
-                        value={field.value}
-                      >
+                      <Select onValueChange={field.onChange} value={field.value}>
                         <FormControl>
                           <SelectTrigger className="w-32">
                             <SelectValue placeholder="End Time" />
@@ -168,9 +133,7 @@ const AvailabilityForm = ({ data }: AvailabilityFormProps) => {
           name="timeGap"
           render={({ field }) => (
             <FormItem className="flex items-center space-x-4">
-              <FormLabel className="w-48">
-                Minimum gap before booking (minutes):
-              </FormLabel>
+              <FormLabel className="w-48">Minimum gap before booking (minutes):</FormLabel>
               <FormControl>
                 <Input
                   type="number"

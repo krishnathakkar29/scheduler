@@ -31,9 +31,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 // Generic type for the hook
-type UseFetchCallback<TArgs extends any[], TResponse> = (
-  ...args: TArgs
-) => Promise<TResponse>;
+type UseFetchCallback<TArgs extends any[], TResponse> = (...args: TArgs) => Promise<TResponse>;
 
 interface UseFetchResult<TArgs extends any[], TResponse> {
   data: TResponse | undefined;

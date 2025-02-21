@@ -1,10 +1,6 @@
 import React from "react";
 
-type Props = {
-  meetingId: string;
-};
-
-const CancelMeeting = ({ meetingId }: Props) => {
+const CancelMeeting = () => {
   return <div>CancelMeeting</div>;
 };
 

@@ -1,13 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { usernameSchema } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -65,22 +59,14 @@ const UpdateLinkForm = ({ username }: Props) => {
                 <FormItem className="flex items-center justify-center py-2">
                   <span>{origin}/</span>
                   <FormControl>
-                    <Input
-                      placeholder="username"
-                      {...field}
-                      value={field.value || ""}
-                    />
+                    <Input placeholder="username" {...field} value={field.value || ""} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            {error && (
-              <p className="text-red-500 text-sm mt-1">{error?.message}</p>
-            )}
-            {loading && (
-              <BarLoader className="mb-4" width={"100%"} color="#36d7b7" />
-            )}
+            {error && <p className="text-red-500 text-sm mt-1">{error?.message}</p>}
+            {loading && <BarLoader className="mb-4" width={"100%"} color="#36d7b7" />}
             <Button type="submit" disabled={loading}>
               Update Username
             </Button>

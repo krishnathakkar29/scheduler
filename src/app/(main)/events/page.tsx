@@ -1,8 +1,6 @@
-import React, { Suspense } from "react";
-import { getEvent } from "../../../../actions/eventAction";
 import EventCard from "@/components/event-card";
-
-type Props = {};
+import { Suspense } from "react";
+import { getEvent } from "../../../../actions/eventAction";
 
 export const dynamic = "force-dynamic";
 

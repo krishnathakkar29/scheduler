@@ -5,7 +5,7 @@ import Header from "@/components/header";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/sonner";
 import CreateEventDrawer from "@/components/create-event";
-import { Suspense } from "react";
+import React, { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,9 +24,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <Header />
-          <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-            {children}
-          </main>
+          <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white">{children}</main>
           <Toaster richColors />
           <Suspense fallback={<div>Loading......</div>}>
             <CreateEventDrawer />

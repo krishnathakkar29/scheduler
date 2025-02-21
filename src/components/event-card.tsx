@@ -2,14 +2,7 @@
 import { Event } from "@prisma/client";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import useFetch from "@/hooks/use-fetch";
@@ -33,9 +26,7 @@ const EventCard = ({ event, username, isPublic = false }: Props) => {
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(
-        `${window?.location.origin}/${username}/${event.id}`
-      );
+      await navigator.clipboard.writeText(`${window?.location.origin}/${username}/${event.id}`);
       setIsCopied(true);
     } catch (err) {
       console.error("Failed to copy: ", err);
@@ -53,18 +44,12 @@ const EventCard = ({ event, username, isPublic = false }: Props) => {
 
   const handleCardClick = (e: any) => {
     if (e.target.tagName !== "BUTTON" && e.target.tagName !== "SVG") {
-      window?.open(
-        `${window?.location.origin}/${username}/${event.id}`,
-        "_blank"
-      );
+      window?.open(`${window?.location.origin}/${username}/${event.id}`, "_blank");
     }
   };
 
   return (
-    <Card
-      className="flex flex-col justify-between cursor-pointer"
-      onClick={handleCardClick}
-    >
+    <Card className="flex flex-col justify-between cursor-pointer" onClick={handleCardClick}>
       <CardHeader>
         <CardTitle className="text-2xl">{event.title}</CardTitle>
         <CardDescription className="flex justify-between">
@@ -75,25 +60,15 @@ const EventCard = ({ event, username, isPublic = false }: Props) => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <p>
-          {event.description?.substring(0, event.description?.indexOf("."))}.
-        </p>
+        <p>{event.description?.substring(0, event.description?.indexOf("."))}.</p>
       </CardContent>
       {!isPublic && (
         <CardFooter className="flex gap-2">
-          <Button
-            variant="outline"
-            onClick={handleCopy}
-            className="flex items-center"
-          >
+          <Button variant="outline" onClick={handleCopy} className="flex items-center">
             <Link className="mr-2 h-4 w-4" />
             {isCopied ? "Copied!" : "Copy Link"}
           </Button>
-          <Button
-            variant="destructive"
-            onClick={handleDelete}
-            disabled={loading}
-          >
+          <Button variant="destructive" onClick={handleDelete} disabled={loading}>
             <Trash2 className="mr-2 h-4 w-4" />
             {loading ? "Deleting..." : "Delete"}
           </Button>

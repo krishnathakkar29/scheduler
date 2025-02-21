@@ -1,6 +1,5 @@
 import prisma from "@/lib/db";
 
-
 export async function POST(req: Request) {
   try {
     const { data } = await req.json();
@@ -9,7 +8,7 @@ export async function POST(req: Request) {
 
     const name = `${data.first_name} ${data.last_name}`;
     const username = name.split(" ").join("-") + data.id.slice(-4);
-    
+
     const user = await prisma.user.upsert({
       where: {
         clerkUserId: data.id,

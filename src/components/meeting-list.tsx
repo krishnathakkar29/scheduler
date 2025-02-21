@@ -1,12 +1,5 @@
 import { format } from "date-fns";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar, Clock, Video } from "lucide-react";
 import React from "react";
 import CancelMeeting from "./cancel-meeting";
@@ -28,9 +21,7 @@ const MeetingList = ({ meetings, type }: Props) => {
           <CardHeader>
             <CardTitle>{meeting.event.title}</CardTitle>
             <CardDescription>with {meeting.name}</CardDescription>
-            <CardDescription>
-              &quot;{meeting.additionalInfo}&quot;
-            </CardDescription>
+            <CardDescription>&quot;{meeting.additionalInfo}&quot;</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex items-center mb-2">

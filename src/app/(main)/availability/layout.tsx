@@ -1,15 +1,9 @@
-import { Suspense } from "react";
+import React, { Suspense } from "react";
 
-export default async function AvailabilityLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function AvailabilityLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="mx-auto">
-      <Suspense fallback={<div>Loading availability...</div>}>
-        {children}
-      </Suspense>
+      <Suspense fallback={<div>Loading availability...</div>}>{children}</Suspense>
     </div>
   );
 }

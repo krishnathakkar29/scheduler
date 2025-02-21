@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Calendar, BarChart, Users, Clock } from "lucide-react";
+import React from "react";
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: BarChart },
@@ -43,8 +44,7 @@ export default function RootLayout({
         <main className="flex-1 overflow-y-auto p-4 md:p-8">
           <header className="flex justify-between items-center mb-4">
             <h2 className="text-5xl md:text-6xl gradient-title pt-2 md:pt-0 text-center md:text-left w-full">
-              {navItems.find((item) => item.href === pathname)?.label ||
-                "Dashboard"}
+              {navItems.find((item) => item.href === pathname)?.label || "Dashboard"}
             </h2>
           </header>
           {children}

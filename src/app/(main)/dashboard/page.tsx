@@ -5,9 +5,7 @@ import { redirect } from "next/navigation";
 import UpdateLinkForm from "@/components/update-link-form";
 import prisma from "@/lib/db";
 
-type Props = {};
-
-const page = async (props: Props) => {
+const page = async () => {
   const user = await currentUser();
   if (!user) {
     redirect("/sign-in");
@@ -17,7 +15,6 @@ const page = async (props: Props) => {
       clerkUserId: user.id,
     },
   });
-
 
   return (
     <div className="space-y-8">

@@ -1,31 +1,16 @@
 "use client";
+import { Button } from "@/components/ui/button";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import useFetch from "@/hooks/use-fetch";
 import { eventSchema } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "./ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "./ui/select";
-import useFetch from "@/hooks/use-fetch";
 import { createEvent } from "../../actions/eventAction";
-import { useRouter } from "next/navigation";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import { Textarea } from "./ui/textarea";
 
 type Props = {
   onSubmitForm: () => void;
@@ -87,11 +72,7 @@ const EventForm = ({ onSubmitForm }: Props) => {
             <FormItem>
               <FormLabel>Duration (minutes)</FormLabel>
               <FormControl>
-                <Input
-                  type="number"
-                  {...field}
-                  onChange={(e) => field.onChange(Number(e.target.value))}
-                />
+                <Input type="number" {...field} onChange={(e) => field.onChange(Number(e.target.value))} />
               </FormControl>
               <FormMessage />
             </FormItem>
